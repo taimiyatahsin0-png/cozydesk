@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'">
+<title>CozyDesk</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="extra.css">
+</head><body>
+<div id="app">
+  <nav>
+    <h1>CozyDesk</h1>
+    <button data-tab="home" class="active">Home</button>
+    <button data-tab="tasks">Tasks</button>
+    <button data-tab="notes">Notes</button>
+    <button data-tab="timer">Timer</button>
+    <button data-tab="settings">Settings</button>
+    <div class="spacer"></div>
+    <button id="btnSleep">Sleepy</button>
+    <button id="btnFocus">Focus</button>
+    <button id="btnQuiet">Quiet</button>
+    <button id="btnPrivacy">Privacy</button>
+  </nav>
+  <main>
+    <section id="pet">
+      <div id="bubble"></div>
+      <svg id="bunny" viewBox="0 0 200 230" aria-label="CozyDesk bunny">
+        <defs><radialGradient id="hg" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#fffafb"/><stop offset="1" stop-color="#f6d6e0"/></radialGradient></defs>
+        <ellipse cx="100" cy="225" rx="54" ry="6" fill="#000" opacity=".2"/>
+        <g id="earL" class="ear"><ellipse cx="68" cy="46" rx="19" ry="47" transform="rotate(-9 68 46)" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/><ellipse cx="68" cy="52" rx="9" ry="31" transform="rotate(-9 68 52)" fill="#f7a8bf"/></g>
+        <g id="earR" class="ear r"><ellipse cx="132" cy="46" rx="19" ry="47" transform="rotate(9 132 46)" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/><ellipse cx="132" cy="52" rx="9" ry="31" transform="rotate(9 132 52)" fill="#f7a8bf"/></g>
+        <g id="body"><ellipse cx="100" cy="192" rx="42" ry="34" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/><ellipse cx="100" cy="199" rx="24" ry="21" fill="#fff6f8"/>
+          <ellipse cx="68" cy="190" rx="9" ry="16" transform="rotate(12 68 190)" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/><ellipse cx="132" cy="190" rx="9" ry="16" transform="rotate(-12 132 190)" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/>
+          <ellipse cx="76" cy="220" rx="17" ry="9" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/><ellipse cx="124" cy="220" rx="17" ry="9" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/></g>
+        <ellipse cx="100" cy="122" rx="64" ry="54" fill="url(#hg)" stroke="#e9b9c8" stroke-width="1.5"/>
+        <g><path d="M134 76 L116 66 V86Z" fill="#e0708d"/><path d="M134 76 L152 66 V86Z" fill="#e0708d"/><circle cx="134" cy="76" r="5" fill="#c4506f"/></g>
+        <ellipse cx="55" cy="144" rx="12" ry="7.5" fill="#ff8fab" opacity=".55"/><ellipse cx="145" cy="144" rx="12" ry="7.5" fill="#ff8fab" opacity=".55"/>
+        <g stroke="#e9b9c8" stroke-width="1.5" stroke-linecap="round"><path d="M40 138 L22 134"/><path d="M40 146 L22 150"/><path d="M160 138 L178 134"/><path d="M160 146 L178 150"/></g>
+        <g id="eyes"><g class="eye"><ellipse cx="72" cy="124" rx="10" ry="13" fill="#3a1220"/><circle cx="75.5" cy="118.5" r="4.2" fill="#fff"/><circle cx="68.5" cy="130" r="2" fill="#fff"/></g>
+          <g class="eye"><ellipse cx="128" cy="124" rx="10" ry="13" fill="#3a1220"/><circle cx="131.5" cy="118.5" r="4.2" fill="#fff"/><circle cx="124.5" cy="130" r="2" fill="#fff"/></g></g>
+        <path d="M95 133 Q100 130 105 133 Q103 139 100 140 Q97 139 95 133Z" fill="#f07c9a"/>
+        <path id="mouth" d="M91 144 Q95.5 151 100 144 Q104.5 151 109 144" stroke="#a63e5c" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div id="zzz">Zzz…</div>
+      <div id="stats"><span id="lvl"></span><div class="bar"><div id="xpFill"></div></div><span id="xpTxt"></span></div>
+    </section>
+    <section id="panel">
+      <div class="tab active" id="tab-home">
+        <h2>Welcome back</h2>
+        <p id="homeSummary"></p>
+        <p class="muted">Click the bunny to say hi. Use Sleepy / Focus / Quiet / Privacy in the top bar.</p>
+      </div>
+      <div class="tab" id="tab-tasks">
+        <h2>Tasks</h2>
+        <div class="row"><input id="taskText" placeholder="New task…"><select id="taskPrio"><option value="high">High</option><option value="med" selected>Medium</option><option value="low">Low</option></select><input type="date" id="taskDue"><button id="addTask">Add</button></div>
+        <ul id="taskList"></ul>
+      </div>
+      <div class="tab" id="tab-notes">
+        <h2>Notes</h2>
+        <div class="row"><input id="noteSearch" placeholder="Search notes…"></div>
+        <textarea id="noteText" placeholder="Write a quick note (auto-saved locally)…"></textarea>
+        <div class="row"><button id="addNote">Save note</button></div>
+        <ul id="noteList" class="privatable"></ul>
+      </div>
+      <div class="tab" id="tab-timer">
+        <h2>Timer</h2>
+        <div id="clock">25:00</div>
+        <div class="row"><button id="tFocus">Focus 25</button><button id="tBreak">Break 5</button><button id="tStart">Start / Pause</button><button id="tReset">Reset</button></div>
+        <p class="muted" id="pomoCount"></p>
+      </div>
+      <div class="tab" id="tab-settings">
+        <h2>Settings</h2>
+        <p class="muted">Windows helper (always asks first)</p>
+        <div class="row wrap">
+          <button data-act="wifi">Wi-Fi</button><button data-act="bluetooth">Bluetooth</button><button data-act="display">Display</button>
+          <button data-act="sound">Sound</button><button data-act="update">Windows Update</button><button data-act="downloads">Downloads</button>
+        </div>
+        <p class="muted">Data is stored only on this PC. RAM itself doesn't heat your laptop; sustained high CPU/GPU use does, so CozyDesk keeps animations light.</p>
+        <button id="resetAll" class="danger">Reset all data</button>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+<script src="extra.js"></script>
+<script src="extra2.js"></script>
+</body></html>

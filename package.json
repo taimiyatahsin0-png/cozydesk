@@ -1,0 +1,33 @@
+{
+  "name": "cozydesk",
+  "version": "0.1.0",
+  "description": "CozyDesk - a cozy desktop bunny companion for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.cozydesk.app",
+    "productName": "CozyDesk",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "app.js",
+      "extra.js",
+      "extra2.js",
+      "styles.css",
+      "extra.css"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "author": "CozyDesk",
+  "license": "MIT"
+}
